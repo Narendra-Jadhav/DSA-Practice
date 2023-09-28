@@ -17,25 +17,33 @@ class node {
         }
 };
 
-//* Creation or Build a Binary Tree
-node* buildTree(node* root) {
-
-    cout << "Enter the data: " << endl;
-    int data;
-    cin >> data;
-    root = new node(data);
-
-    if (data == -1) {
-        return NULL;
+//* Insert Node in BST
+node* insertIntoBST(node* root, int data) {
+    // base case
+    if (root == NULL) {
+        // create new node when we get root as null
+        root = new node(data);
+        return root;
     }
 
-    cout << "Enter data for inserting in left of " << data << endl;
-    root -> left = buildTree(root -> left);
+    if (data > root -> data) {
+        // insert in right part
+        root -> right = insertIntoBST(root -> right, data);
+    }
+    else {
+        // insert in left part
+        root -> left = insertIntoBST(root -> left, data);
+    }
+}
 
-    cout << "Enter data for inserting in right of " << data << endl;
-    root -> right = buildTree(root -> right);
+void takeInput(node* &root) {
+    int data;
+    cin >> data;
 
-    return root;
+    while(data != -1) {
+        root = insertIntoBST(root, data);
+        cin >> data;
+    }
 }
 
 //* Level Order Traversal / Breadth First Search (BFS)

@@ -2,13 +2,13 @@
 #include <queue>
 using namespace std;
 
-class Node {
+class node {
     public:
         int data;
-        Node* left;
-        Node* right;
+        node* left;
+        node* right;
 
-        Node(int d) {
+        node(int d) {
             this -> data = d;
             this -> left = NULL;
             this -> right = NULL;
@@ -16,11 +16,11 @@ class Node {
 };
 
 //* Insert Node in BST
-Node* insertIntoBST(Node* root, int data) {
+node* insertIntoBST(node* root, int data) {
     // base case
     if (root == NULL) {
         // create new node when we get root as null
-        root = new Node(data);
+        root = new node(data);
         return root;
     }
 
@@ -34,7 +34,7 @@ Node* insertIntoBST(Node* root, int data) {
     }
 }
 
-void takeInput(Node* &root) {
+void takeInput(node* &root) {
     int data;
     cin >> data;
 
@@ -45,13 +45,13 @@ void takeInput(Node* &root) {
 }
 
 //* Level Order Traversal / Breadth First Search (BFS)
-void levelOrderTraversal(Node* root) {
-    queue<Node*> q;
+void levelOrderTraversal(node* root) {
+    queue<node*> q;
     q.push(root);
     q.push(NULL); // this NULL will work as a seperator for the level 0 and 1
 
     while(!q.empty()) {
-        Node* temp = q.front();
+        node* temp = q.front();
         q.pop();
 
         if (temp == NULL) { // earlier level is completed
@@ -75,7 +75,7 @@ void levelOrderTraversal(Node* root) {
 
 int main()
 {
-    Node* root = NULL;
+    node* root = NULL;
 
     cout << "Enter data to create BST: " << endl;
     takeInput(root);

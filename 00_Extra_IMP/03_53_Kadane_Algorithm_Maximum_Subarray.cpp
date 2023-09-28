@@ -16,17 +16,37 @@ positive-sum value in max_ending_here compare it with max_so_far and update max_
 * Time Complexity -> O(n)
 */
 
+// int maxSubArray(vector<int> &nums)
+// {
+//     //* Kadane's Algorithm
+//     int max_till_now = INT8_MIN, current_max = 0;
+
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         current_max = max(nums[i], current_max + nums[i]);
+//         max_till_now = max(max_till_now, current_max);
+//     }
+//     return max_till_now;
+// }
+
 int maxSubArray(vector<int> &nums)
 {
     //* Kadane's Algorithm
-    int max_till_now = INT8_MIN, current_max = 0;
+    int sum = 0;
+    int maxi = nums[0];
 
     for (int i = 0; i < nums.size(); i++)
     {
-        current_max = max(nums[i], current_max + nums[i]);
-        max_till_now = max(max_till_now, current_max);
+        sum = sum + nums[i];
+
+        maxi = max(maxi, sum);
+
+        if (sum < 0)
+        {
+            sum = 0;
+        }
     }
-    return max_till_now;
+    return maxi;
 }
 
 int main()
